@@ -43,4 +43,14 @@ footer{font-size:13px;color:var(--muted);margin-top:8px}
 /* playful background texture */
 body::before{content:'';position:fixed;inset:0;z-index:-3;pointer-events:none;background-image:radial-gradient(circle at 10% 20%, rgba(255,234,205,0.5) 0 6%, transparent 7%), radial-gradient(circle at 80% 10%, rgba(237,245,255,0.5) 0 6%, transparent 8%);opacity:0.8}
 
-@media (max-width:520px){.container{padding:12px}button{padding:10px 12px}}
+@media (max-width:520px){
+  .container{padding:12px}
+  button{padding:10px 12px}
+  /* Stack answer controls vertically on small screens to avoid overflow */
+  .answer-row{flex-direction:column;align-items:stretch}
+  .answer-row input#answerInput{width:100%;margin-bottom:8px}
+  .answer-row button{width:100%;display:block;margin:6px 0;border-radius:12px}
+  /* Make help tiles wrap more compactly */
+  .help-tiles{gap:8px}
+  .tile{width:44px;height:44px;font-size:18px}
+}
