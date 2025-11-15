@@ -1,93 +1,46 @@
 :root{
-  --bg:#f6f8fb;
+  --bg:#fffaf0; /* warm cream */
   --card:#ffffff;
-  --accent:#2b6cb0;
+  --accent-start:#ff9fb1; /* playful gradient start */
+  --accent-end:#ffda77;   /* playful gradient end */
+  --accent:#ff8aa0;
   --muted:#6b7280;
+  --tile-bg:#fff7ea;
+  --tile-border:#ffd8a8;
+  --tile-color:#6b4631;
 }
 *{box-sizing:border-box}
-body{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial; background:var(--bg); margin:0; color:#111}
-.container{max-width:760px;margin:28px auto;padding:16px}
-h1{margin:0 0 12px}
-.card{background:var(--card);padding:16px;border-radius:10px;box-shadow:0 1px 4px rgba(11,15,30,0.06);margin-bottom:12px}
-textarea{width:100%;padding:8px;border-radius:6px;border:1px solid #e6e9ef;font-size:16px}
+body{font-family:'Baloo 2', system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial; background:var(--bg); margin:0; color:#222}
+.container{max-width:860px;margin:28px auto;padding:20px}
+h1{margin:0 0 14px;font-size:34px;color:#ff6b81;letter-spacing:0.5px;text-shadow:0 2px 0 rgba(0,0,0,0.04)}
+.card{background:var(--card);padding:18px;border-radius:16px;box-shadow:0 8px 20px rgba(99,99,99,0.06);margin-bottom:14px}
+textarea{width:100%;padding:12px;border-radius:12px;border:1px solid #f0e6d8;font-size:18px;background:#fffdf6}
 .controls{display:flex;gap:12px;align-items:center;margin-top:12px}
-button{background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px;border:0;cursor:pointer;font-weight:600}
-button.secondary{background:#eee;color:#111}
-button.icon{background:transparent;border:0;font-size:22px;cursor:pointer}
-.hint{color:var(--muted);font-size:13px;margin-top:8px}
+button{background:linear-gradient(90deg,var(--accent-start), var(--accent-end));color:#fff;padding:10px 14px;border-radius:999px;border:0;cursor:pointer;font-weight:700;box-shadow:0 6px 14px rgba(255,150,150,0.08)}
+button.secondary{background:#fff;color:#333;border:1px solid #f0e6d8;padding:8px 12px}
+button.icon{background:transparent;border:0;font-size:26px;cursor:pointer}
+.hint{color:var(--muted);font-size:14px;margin-top:8px}
 .hidden{display:none}
 .test-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 .word-panel{display:flex;gap:12px;align-items:center}
-.placeholder{font-size:18px;color:var(--muted)}
+.placeholder{font-size:20px;color:#444}
 .answer-row{display:flex;gap:8px;margin-top:12px}
-#answerInput{flex:1;padding:8px;border-radius:8px;border:1px solid #e6e9ef;font-size:16px}
-.feedback{margin-top:12px;font-weight:600}
-.reveal{background:#fff7e6;border:1px solid #ffd59e;padding:6px 8px;border-radius:6px;display:inline-block}
+#answerInput{flex:1;padding:10px;border-radius:12px;border:1px solid #f0e6d8;font-size:18px}
+.feedback{margin-top:12px;font-weight:700;color:#2b6cb0}
+.reveal{background:#fff7e6;border:1px solid #ffd59e;padding:8px 10px;border-radius:8px;display:inline-block}
 
-.help-tiles{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
-.tile{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;background:var(--tile-bg,#f8f3e8);border:1px solid var(--tile-border,#e2cfa3);font-weight:700;color:var(--tile-color,#222);box-shadow:0 2px 0 rgba(0,0,0,0.06);font-size:18px}
+.help-tiles{margin-top:12px;display:flex;flex-wrap:wrap;gap:10px}
+.tile{width:52px;height:52px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;background:var(--tile-bg);border:1px solid var(--tile-border);font-weight:800;color:var(--tile-color);box-shadow:0 6px 0 rgba(0,0,0,0.04);font-size:20px}
 .tile .sub{display:block;font-size:10px;color:#7a6445}
 .help-tiles.hidden{display:none}
 
-/* Theme controls */
-.theme-controls{display:flex;gap:8px;align-items:center;margin:12px 0}
-.theme-label{font-weight:700;color:var(--muted)}
-.theme-btn{background:transparent;border:1px solid #ddd;padding:6px 8px;border-radius:8px;cursor:pointer}
-.theme-btn.active{outline:3px solid rgba(0,0,0,0.08);box-shadow:0 2px 6px rgba(0,0,0,0.06)}
-
-/* Theme: Marvel (superhero) */
-body.theme-marvel{--accent:#ff3b6d;--bg:linear-gradient(180deg,#ffeef4 0%, #fff 100%);--card:rgba(255,255,255,0.95);--muted:#6b2331;--tile-bg:#fff1f4;--tile-border:#ffccd9;--tile-color:#6b2331}
-
-body.theme-marvel h1{
-  font-family: 'Bangers', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  color: #ff1744;
-  text-shadow: 0 4px 0 rgba(0,0,0,0.12), 0 8px 18px rgba(255,23,68,0.12);
-  letter-spacing: 1px;
-  transform: translateZ(0);
-}
-
-/* Theme: Nature */
-body.theme-nature{--accent:#2a9d8f;--bg:linear-gradient(180deg,#e6faf6 0%, #f6fffb 100%);--card:rgba(255,255,255,0.95);--muted:#2f6b5a;--tile-bg:#e8f7f3;--tile-border:#bfe7dd;--tile-color:#22584a}
-
-/* Theme: Space */
-body.theme-space{--accent:#6b7cff;--bg:linear-gradient(180deg,#0f1724 0%, #071029 55%);color:#eef3ff;--card:rgba(10,14,28,0.7);--muted:#9fb0ff;--tile-bg:#0b1530;--tile-border:#273a66;--tile-color:#bcd1ff}
-
-/* Make sure the container contrasts on dark space theme */
-body.theme-space .container{background:transparent}
-
-/* Space background: planets + twinkling stars + shooting stars */
-body.theme-space::before{
-  /* static planets / galaxy glows */
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -2;
-  background:
-    radial-gradient(circle at 14% 20%, rgba(255,200,80,0.16) 0 6%, transparent 12%),
-    radial-gradient(circle at 76% 28%, rgba(120,160,255,0.12) 0 8%, transparent 16%),
-    radial-gradient(circle at 62% 78%, rgba(180,100,255,0.08) 0 10%, transparent 18%),
-    radial-gradient(circle at 45% 55%, rgba(200,220,255,0.06) 0 22%, transparent 28%);
-}
-
-body.theme-space::after{
-  /* static stars layer + a static shooting streak */
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1;
-  background-image:
-    radial-gradient(#ffffff 0.6px, transparent 0.6px),
-    linear-gradient(135deg, rgba(255,255,255,0.92) 0 2%, rgba(255,255,255,0.18) 40%, transparent 60%);
-  /* small star dots, and a single static streak positioned like a shooting star */
-  background-size: 3px 3px, 260px 6px;
-  background-position: 0 0, 30% 25%;
-  opacity: 0.7;
-}
-
-/* Smooth transitions for theme changes */
-body, .card, .tile{transition:background 240ms ease,color 240ms ease,border-color 240ms ease}
+/* Cursive display for correct answers */
+.cursive{margin-top:12px;font-family:'Dancing Script', cursive;font-size:36px;color:#6b4631;padding:8px 0}
+.cursive.hidden{display:none}
+.cursive small{display:block;font-size:12px;color:var(--muted)}
 footer{font-size:13px;color:var(--muted);margin-top:8px}
 
-@media (max-width:520px){.container{padding:12px}button{padding:8px 10px}}
+/* playful background texture */
+body::before{content:'';position:fixed;inset:0;z-index:-3;pointer-events:none;background-image:radial-gradient(circle at 10% 20%, rgba(255,234,205,0.5) 0 6%, transparent 7%), radial-gradient(circle at 80% 10%, rgba(237,245,255,0.5) 0 6%, transparent 8%);opacity:0.8}
+
+@media (max-width:520px){.container{padding:12px}button{padding:10px 12px}}

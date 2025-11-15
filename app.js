@@ -21,9 +21,7 @@ const editBtn = el('editBtn')
 const showAnswerBtn = el('showAnswerBtn')
 const helpBtn = el('helpBtn')
 const helpTiles = el('helpTiles')
-const themeMarvel = el('themeMarvel')
-const themeNature = el('themeNature')
-const themeSpace = el('themeSpace')
+const cursiveEl = el('cursive')
 
 let words = []
 let order = []
@@ -49,6 +47,8 @@ function speak(text){
 
 function startTest(){
   words = parseWords()
+  // persist the current word list when starting
+  saveWordList()
   if(words.length===0) { alert('Please enter at least one word'); return }
   order = words.map((_,i) => i)
   if(shuffleEl.checked){
@@ -68,6 +68,26 @@ function startTest(){
   answerInput.focus()
 }
 
+// Persist/load word list to/from localStorage so edits are remembered
+function saveWordList(){
+  if(!wordListEl) return
+  try{ localStorage.setItem('spelling.words', wordListEl.value) }catch(e){}
+}
+
+function loadWordList(){
+  if(!wordListEl) return
+  try{
+    const v = localStorage.getItem('spelling.words')
+    if(v) wordListEl.value = v
+  }catch(e){}
+}
+
+// auto-save on edit
+if(wordListEl) wordListEl.addEventListener('input', saveWordList)
+
+// load saved list on startup
+loadWordList()
+
 function updateUI(){
   progressEl.textContent = `Word ${current+1} / ${order.length}`
   scoreEl.textContent = `Score: ${score}`
@@ -75,6 +95,7 @@ function updateUI(){
   answerInput.value = ''
   // hide help tiles when moving to a new word
   if(helpTiles) { helpTiles.innerHTML = ''; helpVisible = false }
+  if(cursiveEl) { cursiveEl.innerHTML = ''; cursiveEl.classList.add('hidden') }
 }
 
 function speakCurrent(){
@@ -91,6 +112,11 @@ function checkAnswer(){
   if(ok){
     feedbackEl.textContent = 'Correct ✅'
     score++
+    // show the word in cursive to help memory
+    if(cursiveEl){
+      cursiveEl.innerHTML = `<div class="cursive-text">${escapeHtml(correct)}</div>`
+      cursiveEl.classList.remove('hidden')
+    }
   } else {
     // Do not reveal the correct spelling here. Offer the ability to reveal temporarily.
     feedbackEl.textContent = 'Incorrect ❌ — press "Show Answer" to reveal'
@@ -207,28 +233,7 @@ if(helpBtn) helpBtn.addEventListener('click', ()=>{
   if(helpVisible){ helpTiles.innerHTML = ''; helpVisible = false } else { showHelp() }
 })
 
-function setTheme(name){
-  // remove any theme classes
-  document.body.classList.remove('theme-marvel','theme-nature','theme-space')
-  if(name === 'marvel') document.body.classList.add('theme-marvel')
-  if(name === 'nature') document.body.classList.add('theme-nature')
-  if(name === 'space') document.body.classList.add('theme-space')
-  try{ localStorage.setItem('spelling.theme', name) }catch(e){}
-  // update active state on buttons
-  if(themeMarvel) themeMarvel.classList.toggle('active', name === 'marvel')
-  if(themeNature) themeNature.classList.toggle('active', name === 'nature')
-  if(themeSpace) themeSpace.classList.toggle('active', name === 'space')
-}
-
-if(themeMarvel) themeMarvel.addEventListener('click', ()=> setTheme('marvel'))
-if(themeNature) themeNature.addEventListener('click', ()=> setTheme('nature'))
-if(themeSpace) themeSpace.addEventListener('click', ()=> setTheme('space'))
-
-// initialize theme from storage or default
-try{
-  const saved = localStorage.getItem('spelling.theme')
-  if(saved) setTheme(saved)
-}catch(e){/* ignore */}
+// (theme controls removed)
 
 // Enter key submits check
 answerInput.addEventListener('keydown', (e)=>{

@@ -4,7 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Spelling App</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <meta name="description" content="Simple spelling test app for static hosting / GitHub Pages">
 </head>
@@ -12,25 +13,19 @@
   <main class="container">
     <h1>Spelling Test</h1>
 
-    <div class="theme-controls" aria-label="Theme selector">
-      <span class="theme-label">Themes:</span>
-      <button id="themeMarvel" class="theme-btn" title="Superhero theme">🦸 Marvel</button>
-      <button id="themeNature" class="theme-btn" title="Nature theme">🌿 Nature</button>
-      <button id="themeSpace" class="theme-btn" title="Space theme">🪐 Space</button>
-    </div>
-
     <section id="setup" class="card">
       <h2>Word List (one per line, default 10)</h2>
       <textarea id="wordList" rows="10" aria-label="Word list">apple
-banana
-orange
-pencil
-school
-dolphin
-elephant
-bicycle
-castle
-library</textarea>
+young
+touch
+Double
+Trouble
+Country
+Rough
+Enough
+Tough
+Cousin
+Couple</textarea>
 
       <div class="controls">
         <button id="startBtn">Start Test</button>
@@ -51,6 +46,8 @@ library</textarea>
       </div>
 
       <div id="helpTiles" class="help-tiles" aria-live="polite"></div>
+
+      <div id="cursive" class="cursive hidden" aria-live="polite"></div>
 
       <div class="answer-row">
         <input id="answerInput" type="text" placeholder="Type the spelling here" aria-label="Type your answer">
