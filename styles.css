@@ -38,6 +38,10 @@ button.icon{background:transparent;border:0;font-size:26px;cursor:pointer}
 .cursive{margin-top:12px;font-family:'Dancing Script', cursive;font-size:36px;color:#6b4631;padding:8px 0}
 .cursive.hidden{display:none}
 .cursive small{display:block;font-size:12px;color:var(--muted)}
+
+/* Cursive in results list */
+.result-cursive{font-family:'Dancing Script', cursive;font-size:24px;color:#6b4631;display:block;margin-top:4px;margin-left:12px}
+
 footer{font-size:13px;color:var(--muted);margin-top:8px}
 
 /* playful background texture */

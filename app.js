@@ -203,7 +203,7 @@ function renderResults(){
   let html = `<p><strong>Score:</strong> ${score} / ${order.length}</p>`
   html += '<ol>'
   for(const a of answers){
-    html += `<li><strong>${a.word}</strong> — your answer: ${a.given || '<em>(none)</em>'} ${a.correct ? '✅' : '❌'}</li>`
+    html += `<li><strong>${a.word}</strong> — your answer: ${a.given || '<em>(none)</em>'} ${a.correct ? '✅' : '❌'}<br><span class="result-cursive">${escapeHtml(a.word)}</span></li>`
   }
   html += '</ol>'
   resultsSummary.innerHTML = html
