@@ -32,3 +32,11 @@ Next improvements (ideas)
 - Add a "repeat automatically" option.
 - Allow multiple tries or timed tests.
 - Theme, accessibility improvements, voice selection, and adjustable speech rate.
+
+GitHub Pages (live site)
+
+If you've published this repository to GitHub Pages, the site will be available at:
+
+`https://danharr.github.io/spelling-app`
+
+Replace `danharr` with your GitHub username if different. If you publish from a branch other than `main` or a different path, use the URL provided in the repository Pages settings.
