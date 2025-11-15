@@ -22,6 +22,8 @@ const showAnswerBtn = el('showAnswerBtn')
 const helpBtn = el('helpBtn')
 const helpTiles = el('helpTiles')
 const cursiveEl = el('cursive')
+const keyboard = el('keyboard')
+const backspaceBtn = el('backspaceBtn')
 
 let words = []
 let order = []
@@ -180,7 +182,7 @@ function showHelp(){
   // build letters including duplicates
   const letters = correct.split('')
   if(letters.length === 0) return
-  const shuffled = shuffleArray(letters).map(l => escapeHtml(l.toUpperCase()))
+  const shuffled = shuffleArray(letters).map(l => escapeHtml(l.toLowerCase()))
   // render tiles
   if(!helpTiles) return
   helpTiles.innerHTML = ''
@@ -234,6 +236,43 @@ if(helpBtn) helpBtn.addEventListener('click', ()=>{
 })
 
 // (theme controls removed)
+
+// On-screen keyboard for mobile
+function buildKeyboard(){
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz'
+  const rows = [
+    alphabet.slice(0, 9),   // a-i (9 letters)
+    alphabet.slice(9, 18),  // j-r (9 letters)
+    alphabet.slice(18)      // s-z (8 letters)
+  ]
+  const rowIds = ['keyboardRow1', 'keyboardRow2', 'keyboardRow3']
+  for(let i = 0; i < rows.length; i++){
+    const rowEl = el(rowIds[i])
+    if(!rowEl) continue
+    for(const ch of rows[i]){
+      const btn = document.createElement('button')
+      btn.className = 'key'
+      btn.textContent = ch
+      btn.addEventListener('click', ()=>{ addLetterToAnswer(ch.toLowerCase()) })
+      rowEl.appendChild(btn)
+    }
+  }
+}
+
+function addLetterToAnswer(letter){
+  if(!answerInput) return
+  answerInput.value += letter
+  answerInput.focus()
+}
+
+if(backspaceBtn) backspaceBtn.addEventListener('click', ()=>{
+  if(!answerInput) return
+  answerInput.value = answerInput.value.slice(0, -1)
+  answerInput.focus()
+})
+
+// Build keyboard on startup
+buildKeyboard()
 
 // Enter key submits check
 answerInput.addEventListener('keydown', (e)=>{

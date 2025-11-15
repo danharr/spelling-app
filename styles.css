@@ -47,7 +47,19 @@ footer{font-size:13px;color:var(--muted);margin-top:8px}
 /* playful background texture */
 body::before{content:'';position:fixed;inset:0;z-index:-3;pointer-events:none;background-image:radial-gradient(circle at 10% 20%, rgba(255,234,205,0.5) 0 6%, transparent 7%), radial-gradient(circle at 80% 10%, rgba(237,245,255,0.5) 0 6%, transparent 8%);opacity:0.8}
 
+/* On-screen keyboard for mobile */
+.keyboard{margin-top:12px;display:none}
+.keyboard.visible{display:block}
+.keyboard-row{display:grid;grid-template-columns:repeat(6, 1fr);gap:8px;margin-bottom:8px}
+.key{background:#fff;border:1px solid #f0e6d8;padding:8px 6px;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;color:#333}
+.key:active{background:#ffd59e;transform:scale(0.95)}
+.keyboard-clear{display:flex;justify-content:center}
+.key.backspace{width:100%;padding:10px;background:#ffcccb;color:#700}
+
 @media (max-width:520px){
+  .keyboard{display:block}
+  .keyboard-row{grid-template-columns:repeat(6, 1fr)}
+  .keyboard input#answerInput{display:none}
   .container{padding:12px}
   button{padding:10px 12px}
   /* Stack answer controls vertically on small screens to avoid overflow */

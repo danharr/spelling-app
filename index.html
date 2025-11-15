@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <meta name="description" content="Simple spelling test app for static hosting / GitHub Pages">
+  <meta name="description" content="Spelling test app">
 </head>
 <body>
   <main class="container">
@@ -54,6 +54,16 @@ Couple</textarea>
         <button id="showAnswerBtn" class="secondary" title="Show correct answer temporarily">Show Answer</button>
         <button id="helpBtn" class="secondary" title="Show shuffled letters">Help</button>
         <button id="nextBtn" class="secondary">Next</button>
+      </div>
+
+      <!-- On-screen keyboard for mobile -->
+      <div id="keyboard" class="keyboard">
+        <div class="keyboard-row" id="keyboardRow1"></div>
+        <div class="keyboard-row" id="keyboardRow2"></div>
+        <div class="keyboard-row" id="keyboardRow3"></div>
+        <div class="keyboard-clear">
+          <button id="backspaceBtn" class="key backspace">← Delete</button>
+        </div>
       </div>
 
       <div id="feedback" class="feedback"></div>
