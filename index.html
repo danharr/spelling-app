@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Spelling App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Simple spelling test app for static hosting / GitHub Pages">
+</head>
+<body>
+  <main class="container">
+    <h1>Spelling Test</h1>
+
+    <div class="theme-controls" aria-label="Theme selector">
+      <span class="theme-label">Themes:</span>
+      <button id="themeMarvel" class="theme-btn" title="Superhero theme">🦸 Marvel</button>
+      <button id="themeNature" class="theme-btn" title="Nature theme">🌿 Nature</button>
+      <button id="themeSpace" class="theme-btn" title="Space theme">🪐 Space</button>
+    </div>
+
+    <section id="setup" class="card">
+      <h2>Word List (one per line, default 10)</h2>
+      <textarea id="wordList" rows="10" aria-label="Word list">apple
+banana
+orange
+pencil
+school
+dolphin
+elephant
+bicycle
+castle
+library</textarea>
+
+      <div class="controls">
+        <button id="startBtn">Start Test</button>
+        <label><input type="checkbox" id="shuffle"> Shuffle</label>
+      </div>
+      <p class="hint">Tip: Use the audio button during the test to hear the required word.</p>
+    </section>
+
+    <section id="test" class="card hidden">
+      <div class="test-header">
+        <div id="progress">Word 1 / 10</div>
+        <div id="score">Score: 0</div>
+      </div>
+
+      <div class="word-panel">
+        <button id="speakBtn" class="icon" title="Play word" aria-label="Play word">🔊</button>
+        <div id="wordPlaceholder" class="placeholder">Listen and spell the word</div>
+      </div>
+
+      <div id="helpTiles" class="help-tiles" aria-live="polite"></div>
+
+      <div class="answer-row">
+        <input id="answerInput" type="text" placeholder="Type the spelling here" aria-label="Type your answer">
+        <button id="checkBtn">Check</button>
+        <button id="showAnswerBtn" class="secondary" title="Show correct answer temporarily">Show Answer</button>
+        <button id="helpBtn" class="secondary" title="Show shuffled letters">Help</button>
+        <button id="nextBtn" class="secondary">Next</button>
+      </div>
+
+      <div id="feedback" class="feedback"></div>
+    </section>
+
+    <section id="results" class="card hidden">
+      <h2>Results</h2>
+      <div id="resultsSummary"></div>
+      <button id="retryBtn">Retry</button>
+      <button id="editBtn" class="secondary">Edit Word List</button>
+    </section>
+
+    <footer>
+      <p>Works in modern browsers supporting the Web Speech API (speechSynthesis).</p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
