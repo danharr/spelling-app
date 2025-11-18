@@ -1,3 +1,9 @@
+/* Hide answer input on mobile devices */
+@media (max-width: 600px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+}
 :root{
   --bg:#fffaf0; /* warm cream */
   --card:#ffffff;
