@@ -10,6 +10,7 @@ const resultsSection = el('results')
 const speakBtn = el('speakBtn')
 const wordPlaceholder = el('wordPlaceholder')
 const answerInput = el('answerInput')
+const answerDisplay = el('answerDisplay')
 const checkBtn = el('checkBtn')
 const nextBtn = el('nextBtn')
 const progressEl = el('progress')
@@ -95,6 +96,7 @@ function updateUI(){
   scoreEl.textContent = `Score: ${score}`
   feedbackEl.textContent = ''
   answerInput.value = ''
+  if(answerDisplay) answerDisplay.textContent = ''
   // hide help tiles when moving to a new word
   if(helpTiles) { helpTiles.innerHTML = ''; helpVisible = false }
   if(cursiveEl) { cursiveEl.innerHTML = ''; cursiveEl.classList.add('hidden') }
@@ -107,7 +109,11 @@ function speakCurrent(){
 }
 
 function checkAnswer(){
-  const user = answerInput.value.trim()
+  let user = answerInput.value.trim()
+  // On mobile, use answerDisplay if present
+  if(window.innerWidth <= 600 && answerDisplay && answerDisplay.textContent) {
+    user = answerDisplay.textContent.trim()
+  }
   const idx = order[current]
   const correct = words[idx]
   const ok = user.toLowerCase() === correct.toLowerCase()
@@ -260,15 +266,22 @@ function buildKeyboard(){
 }
 
 function addLetterToAnswer(letter){
-  if(!answerInput) return
-  answerInput.value += letter
-  answerInput.focus()
+  // On mobile, update answerDisplay; on desktop, update input
+  if(window.innerWidth <= 600 && answerDisplay){
+    answerDisplay.textContent += letter
+  } else if(answerInput) {
+    answerInput.value += letter
+    answerInput.focus()
+  }
 }
 
 if(backspaceBtn) backspaceBtn.addEventListener('click', ()=>{
-  if(!answerInput) return
-  answerInput.value = answerInput.value.slice(0, -1)
-  answerInput.focus()
+  if(window.innerWidth <= 600 && answerDisplay){
+    answerDisplay.textContent = answerDisplay.textContent.slice(0, -1)
+  } else if(answerInput) {
+    answerInput.value = answerInput.value.slice(0, -1)
+    answerInput.focus()
+  }
 })
 
 // Build keyboard on startup
@@ -279,6 +292,13 @@ answerInput.addEventListener('keydown', (e)=>{
   if(e.key === 'Enter'){
     e.preventDefault()
     checkAnswer()
+  }
+})
+
+// On mobile, check answer uses answerDisplay
+if(checkBtn) checkBtn.addEventListener('click', ()=>{
+  if(window.innerWidth <= 600 && answerDisplay){
+    answerInput.value = answerDisplay.textContent
   }
 })
 

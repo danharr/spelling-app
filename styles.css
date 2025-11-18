@@ -1,7 +1,38 @@
-/* Hide answer input on mobile devices */
+/* Answer display for mobile keyboard */
+.answer-display {
+  width: 100%;
+  min-height: 44px;
+  margin-bottom: 10px;
+  background: #fffdf6;
+  border: 1px solid #f0e6d8;
+  border-radius: 12px;
+  font-size: 20px;
+  color: #444;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: left;
+  letter-spacing: 1px;
+  font-family: inherit;
+  pointer-events: none;
+  display: none;
+}
+
 @media (max-width: 600px) {
+  .answer-display {
+    display: block;
+  }
+}
+/* Hide answer input on mobile devices (≤600px and ≤520px) */
+@media (max-width: 600px) {
+  input#answerInput,
   .hide-on-mobile {
     display: none !important;
+    visibility: hidden !important;
+    position: absolute !important;
+    left: -9999px !important;
+    width: 0 !important;
+    height: 0 !important;
+    pointer-events: none !important;
   }
 }
 :root{
